@@ -1,0 +1,9 @@
+int main(){
+    int a1 = 1;
+    string a2 = "123";
+    get a1;
+    put a1;
+    put "ABC";
+    put 'a';
+    return 0;
+}

@@ -1,6 +1,13 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+    Keyword - K
+    Identifier - I
+    Symbol - S
+    Value - V
+*/
+
 class Token {
     string token;
     int line_no;
@@ -20,14 +27,11 @@ class Token {
     int get_line_no() { return line_no; }
 };
 
-class SymbolTable{
-
-};
-
 class Analyzer {
     string filename;
     vector<string> keywords;
     vector<string> symbols;
+    vector<Token> lines;
 
    public:
     Analyzer(string fn, string keywordfile = "keywords.txt", string symbolfile = "symbols.txt") {
@@ -79,8 +83,7 @@ class Analyzer {
         return true;
     }
 
-    void run_scan() {
-        vector<vector<Token>> lines;
+    vector<Token> run_scan() {
         // Read CPP file
         ifstream fin(filename);
         stringstream buffer;
@@ -91,45 +94,59 @@ class Analyzer {
         contents.append("\n");
         string sym;
         int ln = 1;  // line number
-        vector<Token>* line = new vector<Token>;
+        char str_flag = '\0';
         // iterate through tokens
         for (auto it : contents) {
-            if (((sym.back() >= 'A' && sym.back() <= 'Z') || (sym.back() >= 'a' && sym.back() <= 'z') || (sym.back() >= '0' && sym.back() <= '9')) &&
-                ((it >= 'A' && it <= 'Z') || (it >= 'a' && it <= 'z') || (it >= '0' && it <= '9'))) {
+            if ((str_flag == '\'' || str_flag == '\"') && str_flag != it) {
                 sym.append(string(1, it));
-                continue;
+            } else if (((sym.back() >= 'A' && sym.back() <= 'Z') || (sym.back() >= 'a' && sym.back() <= 'z') ||
+                        (sym.back() >= '0' && sym.back() <= '9')) &&
+                       ((it >= 'A' && it <= 'Z') || (it >= 'a' && it <= 'z') || (it >= '0' && it <= '9'))) {
+                sym.append(string(1, it));
             } else {
-                if (is_keyword(sym)) {
-                    line->push_back(Token(sym, ln, 'K'));
+                if (str_flag == it) {
+                    lines.push_back(Token(sym, ln, 'V'));
+                } else if (is_keyword(sym)) {
+                    lines.push_back(Token(sym, ln, 'K'));
                 } else if (is_symbol(sym)) {
-                    line->push_back(Token(sym, ln, 'S'));
+                    lines.push_back(Token(sym, ln, 'S'));
                 } else if (is_num(sym)) {
-                    line->push_back(Token(sym, ln, 'N'));
+                    lines.push_back(Token(sym, ln, 'V'));
                 } else if (is_id(sym)) {
-                    line->push_back(Token(sym, ln, 'I'));
+                    lines.push_back(Token(sym, ln, 'I'));
                 } else if (sym.length() > 0) {
-                    cout << "Couldn't identify :" << sym << "\n";
+                    cout << "Couldn't identify : " << sym << "\n";
                 }
                 sym = "";
                 if (!(it == ' ' || it == '\n')) sym.append(string(1, it));
+                if (it == '\'' || it == '\"') {
+                    if (str_flag != it){
+                        lines.push_back(Token(sym, ln, 'S'));
+                        sym = "";
+                        str_flag = it;
+                    }
+                    else
+                        str_flag = '\0';
+                }
             }
             if (it == '\n') {
                 ln++;
-                lines.push_back(*line);
-                line = new vector<Token>;
             }
         }
+        return lines;
+    }
+
+    void print_tokens() {
+        cout<<"Lexical Analyzer:\n";
         for (auto it : lines) {
-            for (auto j : it) {
-                cout << j.get_token() << " " << j.get_type() << " " << j.get_line_no() << "\n";
-            }
-            // cout<<endl;
+            cout << it.get_token() << " " << it.get_type() << " " << it.get_line_no() << "\n";
         }
     }
 };
 
-int main() {
-    Analyzer lexical = Analyzer("test.txt");
-    lexical.run_scan();
-    return 0;
-}
+// int main() {
+//     Analyzer lexical = Analyzer("test.txt");
+//     lexical.run_scan();
+//     lexical.print_tokens();
+//     return 0;
+// }
