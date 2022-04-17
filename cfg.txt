@@ -1,0 +1,16 @@
+C -> int main( A ) { E  R }	
+A -> int id, string[] id | e 
+E -> STMT; E | e
+STMT -> TYPE D | e
+D -> id B|id = EXPR B
+B -> , D | e
+STMT -> get id | put id | id = COND_STMT | id = EXPR
+COND_STMT -> LEXPR ? COND_STMT : COND_STMT | EXPR
+LEXPR -> id ROP id | LEXPR LOP LEXPR | ( LEXPR )
+ROP -> .lt. | .gt. | .eq.
+LOP -> .or. | .and.
+EXPR -> EXPR + T | EXPR - T | T | - T
+T → T * F | F
+F → (EXPR) | id | val
+R -> return val; |  e
+TYPE -> int | char | string

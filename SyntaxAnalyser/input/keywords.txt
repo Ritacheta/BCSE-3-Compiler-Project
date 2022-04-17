@@ -1,0 +1,8 @@
+char
+return
+int
+string
+float
+main
+get
+put
