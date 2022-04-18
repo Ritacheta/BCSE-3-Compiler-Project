@@ -246,6 +246,7 @@ int findposT(char c) {
     for (int i = 0; i < terminals.size(); ++i) {
         if (terminals[i] == c) return i;
     }
+    return 0;
 }
 
 // Get the position of non-terminal row in the Parser Table
@@ -253,6 +254,7 @@ int findposNT(char c) {
     for (int i = 0; i < nonterminals.size(); i++) {
         if (nonterminals[i] == c) return i;
     }
+    return 0;
 }
 
 // Get the Next state when an input symbol arrives
@@ -260,6 +262,7 @@ int findposgoto(int st, char c) {
     for (int i = 0; i < gotoList.size(); ++i) {
         if (gotoList[i].originState == st && gotoList[i].input == c) return gotoList[i].finalState;
     }
+    return 0;
 }
 
 void initializeFirstMap(map<char, string> &m) {

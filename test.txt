@@ -1,9 +1,16 @@
-int main(){
-    int a1 = 1;
-    string a2 = "123";
-    get a1;
-    put a1;
-    put "ABC";
-    put 'a';
-    return 0;
+int main() {
+  int a;int b;
+  int c;
+  char x;
+  get a;
+  get b;
+  a=4;
+  {
+    int a = 0;
+    put a;
+  }
+  c = ((a+b)*3);
+  x = c+2 ~ 0 ? 'a' : 'b';
+  put x;
+  return 0;
 }

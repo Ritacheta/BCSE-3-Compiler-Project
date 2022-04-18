@@ -5,9 +5,9 @@
 using namespace std;
 
 int main(int argc, char* argv[]) {
-    char* filename = new char[50];
+    string filename;
     if(argc!=2) {
-        strcpy(filename, "./input/input.cpp");
+        filename = "./input/input.cpp";
     }
     else {
         filename = argv[1];
