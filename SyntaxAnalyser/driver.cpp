@@ -5,12 +5,15 @@
 using namespace std;
 
 int main(int argc, char* argv[]) {
+    char* filename = new char[50];
     if(argc!=2) {
-        cerr<<"Error!\t Usage: ./compile filename\n";
-        return 0;
+        strcpy(filename, "./input/input.cpp");
+    }
+    else {
+        filename = argv[1];
     }
     cout<<"Compiler Design\n";
-    if(!lex(argv[1])) return 0;
+    if(!lex(filename)) return 0;
     string s = printint(tokens);
     if(s=="") return 0;
     if(parse(s)) cout<<"Result:\n The Program is Syntactically Correct!!!\n\n";
