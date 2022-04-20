@@ -15,6 +15,7 @@ int main(int argc, char* argv[]) {
     cout << "Compiler Design\n";
     if (!lex("./input/converted_input.txt")) return 0;
     string s = printint(tokens);
+    cout<<"\nOutput From the Lexical Analyser: "<<s<<endl;
     if (s == "") return 0;
     if (parse(s))
         cout << "Result:\n The Program is Syntactically Correct!!!\n\n";

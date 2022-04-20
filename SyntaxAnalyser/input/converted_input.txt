@@ -1,4 +1,4 @@
-main(int a,int b) {
+int main() {
   /*single and multiline
   comments have been handled*/
   int a, b;

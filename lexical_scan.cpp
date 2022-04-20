@@ -144,9 +144,9 @@ class Analyzer {
     }
 };
 
-// int main() {
-//     Analyzer lexical = Analyzer("test.txt");
-//     lexical.run_scan();
-//     lexical.print_tokens();
-//     return 0;
-// }
+int main() {
+    Analyzer lexical = Analyzer("test.txt");
+    lexical.run_scan();
+    lexical.print_tokens();
+    return 0;
+}

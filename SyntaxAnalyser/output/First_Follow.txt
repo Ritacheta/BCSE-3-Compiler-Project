@@ -1,0 +1,17 @@
+Non-Terminal	First Set	Follow Set
+A	h
+B	h
+C	hi,sx
+D	hix
+G	
+I	
+J	(bcds
+K	b
+L	x;fgbj(cds
+M	fg
+N	(bcds
+O	j
+P	(bcds
+Q	(bcds
+R	(bcds
+S	

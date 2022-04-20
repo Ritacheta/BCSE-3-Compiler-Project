@@ -535,6 +535,13 @@ bool parse(string str) {
         t++;
     }
 
+    // ofstream outfile("./output/First_Follow.txt");
+    // outfile<<"Non-Terminal\tFirst Set\tFollow Set\n";
+    // for(auto it:firstmap){
+    //     outfile<<it.first<<"\t"<<it.second<<endl;
+    // }
+    // outfile.close();
+
     add_dots(&I);
 
     canonicalSet(&I);

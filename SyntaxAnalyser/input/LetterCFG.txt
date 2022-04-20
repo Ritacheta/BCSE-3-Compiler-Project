@@ -1,5 +1,5 @@
 A->B
-B->a(C){DL}
+B->ha(C){DL}
 C->hbC
 C->ibC
 C->,ibC
