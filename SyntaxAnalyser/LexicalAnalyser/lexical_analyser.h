@@ -1,19 +1,12 @@
 // A Basis C/C++ Lexical Analyser
 // The program consists of various functions to identify the type of token.
-#include <algorithm>
-#include <fstream>
-#include <iomanip>
-#include <iostream>
-#include <map>
-#include <string>
-#include <tuple>
-#include <vector>
+#include <bits/stdc++.h>
 
 // Assigning an id to these special types
 #define KEYWORD_ID 0
 #define LITERAL_ID 99
 #define IDENTIFIER_ID 2
-#define INTEGER_ID 7
+#define INTEGER_ID 8
 #define FLOAT_ID 99
 #define CHAR_ID 9
 #define INVALID_IDENTIFIER_ID 99
@@ -29,7 +22,8 @@ int dfa_keyword[25][26];
 const map<int, pair<string, vector<char> > > char_token_types = {{3, {"Arithmetic Operator", {'+', '-', '*', '/'}}},
                                                                  {4, {"Relational Operator", {'<', '>', '~'}}},
                                                                  {5, {"Assignment Operator", {'='}}},
-                                                                 {6, {"Special Symbol", {'(', ')', '{', '}', ',', ';', ':', '?'}}}};
+                                                                 {6, {"Special Symbol", {'(', ')', '{', '}', ',', ';', ':', '?'}}},
+                                                                 {7, {"Logical Operator",{'&','|'}}}};
 
 // this array stores the tokens.
 // the first parameter (int) is the token_id, second parameter
@@ -360,10 +354,8 @@ string getTypeString(int typeId) {
             return "literal";
         case 2:
             return "id";
-        case 7:
-            return "int";
         case 8:
-            return "float";
+            return "int";
         case 9:
             return "char";
         case 99:
@@ -409,4 +401,47 @@ bool lex(string inputfile) {
     ofile.close();
     cout << " Lexical Analysis Completed !! \n";
     return true;
+}
+
+string printint(vector<tuple<int, string, int, int, int> > store) {
+    map<string, char> mp;
+    mp.insert(pair<string, char>("main", 'a'));
+    mp.insert(pair<string, char>("int", 'h'));
+    mp.insert(pair<string, char>("get", 'f'));
+    mp.insert(pair<string, char>("put", 'g'));
+    mp.insert(pair<string, char>("char", 'i'));
+    mp.insert(pair<string, char>("return", 'j'));
+
+    string output = "";
+    // ofstream outp;
+    // outp.open("Intermediatefile.txt");
+    for (int i = 0; i < store.size(); i++) {
+        int type = get<2>(store[i]);
+        if (type == 0) {
+            map<string, char>::iterator it = mp.find(get<1>(store[i]));
+            // outp << it->second;
+            output = output + it->second;
+        }
+        // else if(type==1)
+        //	outp <<"2"<<" ";
+        else if (type == 2)  //(id,b)
+            // outp <<"b";
+            output = output + "b";
+        else if (type == 7)  //(number,c)
+            // outp<<"c";(
+            output = output + "c";
+        else if (type == 9)  //(character,i)
+            // outp<<"d";
+            output = output + "d";
+        else if (type == 99) {
+            cout << "Invalid token found: " << get<1>(store[i]) << endl;
+            ;
+            return "";
+        } else {
+            output = output + get<1>(store[i]);
+        }
+    }
+    // outp.close();
+    output += "$";
+    return output;
 }

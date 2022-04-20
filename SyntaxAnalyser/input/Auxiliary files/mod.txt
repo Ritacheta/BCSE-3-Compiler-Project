@@ -4,6 +4,7 @@
 (id,b)
 (number,c)
 (character,d)
+(string,s)
 (arg1,e)
 (get,f)
 (put,g)
@@ -31,3 +32,4 @@
 (RELEXPRESSION,P)
 (ARITHMETIC,Q)
 (OPERAND,R)
+(LOGEXPRESSION,S)

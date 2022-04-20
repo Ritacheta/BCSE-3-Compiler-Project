@@ -4,9 +4,13 @@ C->hbC
 C->ibC
 C->,ibC
 C->,hbC
+C->sbC
+C->,sbC
 C->x
 D->hb;D
+D->hb,b;D
 D->ib;D
+D->ib,b;D
 D->x
 L->J
 L->M
@@ -30,6 +34,7 @@ R->Q
 R->b
 R->c
 R->d
+R->s
 Q->R+R
 Q->R-R
 Q->R*R

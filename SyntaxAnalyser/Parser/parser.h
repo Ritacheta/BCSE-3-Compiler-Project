@@ -1,15 +1,12 @@
-#include <stdlib.h>
-#include <string.h>
-
-#include <algorithm>
-#include <fstream>
-#include <iomanip>
-#include <iostream>
-#include <map>
-#include <stack>
-#include <vector>
+#include <bits/stdc++.h>
 using namespace std;
 
+// Defining the list of terminals and non-terminals used in the grammer
+vector<char> terminals{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'z', 'x', 's', '=', '(',
+                            ')', '{', '}', '~', '?', '$', ':', ';', '>', '<', '+', '-', '*', '~', ','};
+vector<char> nonterminals{'A', 'B', 'C', 'D', 'G', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S'};
+vector<char> symbList{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 's', 'A', 'B', 'C', 'D', 'G', 'I', 'J', 'K', 'L', 'M', 'N', 'O',
+                      'P', 'Q', 'R', 'S', 'z', 'x', '=', '(', ')', '{', '}', '?', ',', ':', ';', '>', '<', '+', '-', '*', '~', '&', '|'};
 // Read the productions list from the file
 vector<string> prod_ar() {
     ifstream fp("./input/LetterCFG.txt");
@@ -23,21 +20,15 @@ vector<string> prod_ar() {
         else
             prod.push_back(line);
     }
-
     return prod;
-
-}  // one extra line is getting inserted at the end so use test condition as <(less than)vector.size()-1
+}
 
 // Get a mapping of production to its index
-map<int, string> prod_index() {
-    vector<string> l;
-    l = prod_ar();
+map<int, string> prod_index(vector<string> l) {
     map<int, string> index;
-
     for (int i = 0; i < l.size() - 1; i++) {
         index.insert({i, l[i]});
     }
-
     return index;
 }
 
@@ -78,7 +69,6 @@ string move_dot(string b) {
     string t(1, b[s + 1]);
     b.replace(s, 1, t);
     b.replace(s + 1, 1, ".");
-
     return b;
 }
 
@@ -140,15 +130,12 @@ void goto_state(struct state *I, struct state *S, char a, struct state I0) {
             if (S->prod[i].length() - 1 == S->prod[i].find('.')) continue;
 
             if (is_non_terminal(char_after_dot(S->prod[i]))) {
-                // cout<<"State: "<<char_after_dot(S->prod[i]);
                 for (int temp = 0; temp < I0.prod.size(); temp++) {
                     if (I0.prod[temp][0] == char_after_dot(S->prod[i])) {
-                        // cout<<"\n"<<I0.prod[temp][0]<<" "<<S->prod[i]<<"PROD ";;
                         int found = 0;
                         for (int ptr = 0; ptr < S->prod.size(); ptr++) {
                             if (S->prod[ptr].compare(I0.prod[temp]) == 0) found = 1;
                         }
-
                         if (!found) {
                             S->prod.push_back(I0.prod[temp]);
                         }
@@ -186,8 +173,6 @@ int checkIfalready(struct state s) {
                     }
                 }
             }
-            // cout<<"\n\n\n";
-
             if (count != filter.states[q].prod.size()) noofStates += 1;
             if (count == filter.states[q].prod.size()) return index[q];
         }
@@ -199,28 +184,20 @@ int checkIfalready(struct state s) {
 // Creation of the canonical set.
 void canonicalSet(struct state *I0) {
     canonSet.states.push_back(*I0);
-
-    vector<char> symbList{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'A', 'B', 'C', 'D', 'G', 'I', 'J', 'K', 'L', 'M', 'N',
-                          'O', 'P', 'Q', 'R', 'z', 'x', '=', '(', ')', '{', '}', '?', ',', ':', ';', '>', '<', '+', '-', '*', '~'};
     int prev_size = 1;
     while (true) {
         int si = canonSet.states.size();
-
         for (int i = 0; i < si; i++) {
             for (int j = 0; j < symbList.size(); j++) {
                 struct state s;
-
                 goto_state(&canonSet.states[i], &s, symbList[j], *I0);
-
                 if (s.prod.size() != 0 && checkIfalready(s) == -1) {
                     canonSet.states.push_back(s);
-
                     struct GotoTrans temp;
                     temp.originState = i;
                     temp.finalState = canonSet.states.size() - 1;
                     temp.input = symbList[j];
                     gotoList.push_back(temp);
-
                 } else if (s.prod.size() != 0) {
                     struct GotoTrans temp;
                     temp.originState = i;
@@ -231,15 +208,9 @@ void canonicalSet(struct state *I0) {
             }
         }
         if (prev_size == canonSet.states.size()) break;
-
         prev_size = canonSet.states.size();
     }
 }
-
-// Defining the list of terminals and non-terminals used in the grammer
-std::vector<char> terminals{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'z', 'x', '=', '(', ')',
-                            '{', '}', '~', '?', '$', ':', ';', '>', '<', '+', '-', '*', '~', ','};
-std::vector<char> nonterminals{'A', 'B', 'C', 'D', 'G', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R'};
 
 // Get the position of terminal column in the Parser Table
 int findposT(char c) {
@@ -277,7 +248,6 @@ void add_to_first(char a, map<char, string> &m, char b) {
     map<char, string>::iterator itr = m.find(a);
     string str;
     if (itr != m.end()) str = itr->second;
-
     if (str.find(b) == string::npos) itr->second += (b);
 }
 // FIRST(n) addded to FIRST(m)
@@ -437,9 +407,7 @@ bool parser(string in) {
     fstream f;
     f.open("./output/ParsingSteps.txt", ios::out);
     f << "Action " << setw(20) << "Production/State" << setw(20) << "Next Input" << setw(20) << " Next State" << setw(20) << "\n";
-    ;
     f << "-------------------------------------------------------------------------------\n";
-    ;
     while (true) {
         int top = parserStack.top();
         string action = actiontable[top][findposT(nextInput)];
@@ -476,7 +444,7 @@ bool parse(string str) {
     l = prod_ar();
 
     map<int, string> k;
-    k = prod_index();
+    k = prod_index(l);
 
     struct state I;
     I.prod = l;
