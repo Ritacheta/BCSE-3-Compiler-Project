@@ -1,16 +1,13 @@
 00  ----  A->.B     
           B->.ha(C){DL}
-          C->.hbC
-          C->.ibC
-          C->.,ibC
-          C->.,hbC
-          C->.sbC
-          C->.,sbC
+          C->.hb,k[]b
           C->.x
           D->.hb;D
           D->.hb,b;D
           D->.ib;D
           D->.ib,b;D
+          D->.kb;D
+          D->.kb,b;D
           D->.x
           L->.J
           L->.M
@@ -34,7 +31,7 @@
           R->.b
           R->.c
           R->.d
-          R->.s
+          R->.k
           Q->.R+R
           Q->.R-R
           Q->.R*R
@@ -52,12 +49,11 @@
 05  ----  M->g.b;L  
           
 06  ----  B->h.a(C){DL}
-          C->h.bC
+          C->h.b,k[]b
           D->h.b;D
           D->h.b,b;D
           
-07  ----  C->i.bC   
-          D->i.b;D
+07  ----  D->i.b;D  
           D->i.b,b;D
           
 08  ----  O->j.R;   
@@ -66,13 +62,14 @@
           R->.b
           R->.c
           R->.d
-          R->.s
+          R->.k
           Q->.R+R
           Q->.R-R
           Q->.R*R
           
-09  ----  C->s.bC   
-          R->s.
+09  ----  D->k.b;D  
+          D->k.b,b;D
+          R->k.
           
 10  ----  A->B.     
           
@@ -113,18 +110,14 @@
           R->.b
           R->.c
           R->.d
-          R->.s
+          R->.k
           Q->.R+R
           Q->.R-R
           Q->.R*R
           
-21  ----  C->,.ibC  
-          C->,.hbC
-          C->,.sbC
+21  ----  L->;.     
           
-22  ----  L->;.     
-          
-23  ----  K->b=.J;L 
+22  ----  K->b=.J;L 
           J->.N
           J->.P
           J->.R
@@ -138,69 +131,48 @@
           R->.b
           R->.c
           R->.d
-          R->.s
+          R->.k
           Q->.R+R
           Q->.R-R
           Q->.R*R
           
-24  ----  M->fb.;L  
+23  ----  M->fb.;L  
           
-25  ----  M->gb.;L  
+24  ----  M->gb.;L  
           
-26  ----  B->ha.(C){DL}
+25  ----  B->ha.(C){DL}
           
-27  ----  C->hb.C   
+26  ----  C->hb.,k[]b
           D->hb.;D
           D->hb.,b;D
-          C->.hbC
-          C->.ibC
-          C->.,ibC
-          C->.,hbC
-          C->.sbC
-          C->.,sbC
-          C->.x
           
-28  ----  C->ib.C   
-          D->ib.;D
+27  ----  D->ib.;D  
           D->ib.,b;D
-          C->.hbC
-          C->.ibC
-          C->.,ibC
-          C->.,hbC
-          C->.sbC
-          C->.,sbC
-          C->.x
           
-29  ----  R->b.     
+28  ----  R->b.     
           
-30  ----  R->s.     
+29  ----  R->k.     
           
-31  ----  O->jR.;   
+30  ----  O->jR.;   
           Q->R.+R
           Q->R.-R
           Q->R.*R
           
-32  ----  R->(.R)   
+31  ----  R->(.R)   
           R->.(R)
           R->.Q
           R->.b
           R->.c
           R->.d
-          R->.s
+          R->.k
           Q->.R+R
           Q->.R-R
           Q->.R*R
           
-33  ----  C->sb.C   
-          C->.hbC
-          C->.ibC
-          C->.,ibC
-          C->.,hbC
-          C->.sbC
-          C->.,sbC
-          C->.x
+32  ----  D->kb.;D  
+          D->kb.,b;D
           
-34  ----  N->P?.J:J 
+33  ----  N->P?.J:J 
           J->.N
           J->.P
           J->.R
@@ -214,80 +186,80 @@
           R->.b
           R->.c
           R->.d
-          R->.s
+          R->.k
           Q->.R+R
           Q->.R-R
           Q->.R*R
           
-35  ----  P->R>.R   
+34  ----  P->R>.R   
           R->.(R)
           R->.Q
           R->.b
           R->.c
           R->.d
-          R->.s
+          R->.k
           Q->.R+R
           Q->.R-R
           Q->.R*R
           
-36  ----  P->R<.R   
+35  ----  P->R<.R   
           R->.(R)
           R->.Q
           R->.b
           R->.c
           R->.d
-          R->.s
+          R->.k
           Q->.R+R
           Q->.R-R
           Q->.R*R
           
-37  ----  Q->R+.R   
+36  ----  Q->R+.R   
           R->.(R)
           R->.Q
           R->.b
           R->.c
           R->.d
-          R->.s
+          R->.k
           Q->.R+R
           Q->.R-R
           Q->.R*R
           
-38  ----  Q->R-.R   
+37  ----  Q->R-.R   
           R->.(R)
           R->.Q
           R->.b
           R->.c
           R->.d
-          R->.s
+          R->.k
           Q->.R+R
           Q->.R-R
           Q->.R*R
           
-39  ----  Q->R*.R   
+38  ----  Q->R*.R   
           R->.(R)
           R->.Q
           R->.b
           R->.c
           R->.d
-          R->.s
+          R->.k
           Q->.R+R
           Q->.R-R
           Q->.R*R
           
-40  ----  P->R~.R   
+39  ----  P->R~.R   
           R->.(R)
           R->.Q
           R->.b
           R->.c
           R->.d
-          R->.s
+          R->.k
           Q->.R+R
           Q->.R-R
           Q->.R*R
           
-41  ----  N->(P.)?J:J
+40  ----  N->(P.)?J:J
           
-42  ----  R->(R.)   
+41  ----  R->(R.)   
           P->R.~R
           P->R.>R
           P->R.<R
@@ -295,15 +267,9 @@
           Q->R.-R
           Q->R.*R
           
-43  ----  C->,h.bC  
+42  ----  K->b=J.;L 
           
-44  ----  C->,i.bC  
-          
-45  ----  C->,s.bC  
-          
-46  ----  K->b=J.;L 
-          
-47  ----  M->fb;.L  
+43  ----  M->fb;.L  
           L->.J
           L->.M
           L->.K
@@ -327,12 +293,12 @@
           R->.b
           R->.c
           R->.d
-          R->.s
+          R->.k
           Q->.R+R
           Q->.R-R
           Q->.R*R
           
-48  ----  M->gb;.L  
+44  ----  M->gb;.L  
           L->.J
           L->.M
           L->.K
@@ -356,129 +322,93 @@
           R->.b
           R->.c
           R->.d
-          R->.s
+          R->.k
           Q->.R+R
           Q->.R-R
           Q->.R*R
           
-49  ----  B->ha(.C){DL}
-          C->.hbC
-          C->.ibC
-          C->.,ibC
-          C->.,hbC
-          C->.sbC
-          C->.,sbC
+45  ----  B->ha(.C){DL}
+          C->.hb,k[]b
           C->.x
           
-50  ----  C->h.bC   
+46  ----  C->hb,.k[]b
+          D->hb,.b;D
           
-51  ----  C->i.bC   
-          
-52  ----  C->s.bC   
-          
-53  ----  C->hbC.   
-          
-54  ----  C->x.     
-          
-55  ----  D->hb,.b;D
-          C->,.ibC
-          C->,.hbC
-          C->,.sbC
-          
-56  ----  D->hb;.D  
+47  ----  D->hb;.D  
           D->.hb;D
           D->.hb,b;D
           D->.ib;D
           D->.ib,b;D
+          D->.kb;D
+          D->.kb,b;D
           D->.x
           
-57  ----  C->ibC.   
+48  ----  D->ib,.b;D
           
-58  ----  D->ib,.b;D
-          C->,.ibC
-          C->,.hbC
-          C->,.sbC
-          
-59  ----  D->ib;.D  
+49  ----  D->ib;.D  
           D->.hb;D
           D->.hb,b;D
           D->.ib;D
           D->.ib,b;D
+          D->.kb;D
+          D->.kb,b;D
           D->.x
           
-60  ----  O->jR;.   
+50  ----  O->jR;.   
           
-61  ----  R->(R.)   
+51  ----  R->(R.)   
           Q->R.+R
           Q->R.-R
           Q->R.*R
           
-62  ----  C->sbC.   
+52  ----  D->kb,.b;D
           
-63  ----  N->P?J.:J 
+53  ----  D->kb;.D  
+          D->.hb;D
+          D->.hb,b;D
+          D->.ib;D
+          D->.ib,b;D
+          D->.kb;D
+          D->.kb,b;D
+          D->.x
           
-64  ----  P->R>R.   
+54  ----  N->P?J.:J 
+          
+55  ----  P->R>R.   
           Q->R.+R
           Q->R.-R
           Q->R.*R
           
-65  ----  P->R<R.   
+56  ----  P->R<R.   
           Q->R.+R
           Q->R.-R
           Q->R.*R
           
-66  ----  Q->R+R.   
+57  ----  Q->R+R.   
           Q->R.+R
           Q->R.-R
           Q->R.*R
           
-67  ----  Q->R-R.   
+58  ----  Q->R-R.   
           Q->R.+R
           Q->R.-R
           Q->R.*R
           
-68  ----  Q->R*R.   
+59  ----  Q->R*R.   
           Q->R.+R
           Q->R.-R
           Q->R.*R
           
-69  ----  P->R~R.   
+60  ----  P->R~R.   
           Q->R.+R
           Q->R.-R
           Q->R.*R
           
-70  ----  N->(P).?J:J
+61  ----  N->(P).?J:J
           
-71  ----  R->(R).   
+62  ----  R->(R).   
           
-72  ----  C->,hb.C  
-          C->.hbC
-          C->.ibC
-          C->.,ibC
-          C->.,hbC
-          C->.sbC
-          C->.,sbC
-          C->.x
-          
-73  ----  C->,ib.C  
-          C->.hbC
-          C->.ibC
-          C->.,ibC
-          C->.,hbC
-          C->.sbC
-          C->.,sbC
-          C->.x
-          
-74  ----  C->,sb.C  
-          C->.hbC
-          C->.ibC
-          C->.,ibC
-          C->.,hbC
-          C->.sbC
-          C->.,sbC
-          C->.x
-          
-75  ----  K->b=J;.L 
+63  ----  K->b=J;.L 
           L->.J
           L->.M
           L->.K
@@ -502,54 +432,46 @@
           R->.b
           R->.c
           R->.d
-          R->.s
+          R->.k
           Q->.R+R
           Q->.R-R
           Q->.R*R
           
-76  ----  M->fb;L.  
+64  ----  M->fb;L.  
           
-77  ----  L->x.     
+65  ----  L->x.     
           
-78  ----  M->gb;L.  
+66  ----  M->gb;L.  
           
-79  ----  B->ha(C.){DL}
+67  ----  C->h.b,k[]b
           
-80  ----  C->hb.C   
-          C->.hbC
-          C->.ibC
-          C->.,ibC
-          C->.,hbC
-          C->.sbC
-          C->.,sbC
-          C->.x
+68  ----  B->ha(C.){DL}
           
-81  ----  C->ib.C   
-          C->.hbC
-          C->.ibC
-          C->.,ibC
-          C->.,hbC
-          C->.sbC
-          C->.,sbC
-          C->.x
+69  ----  C->x.     
           
-82  ----  D->hb,b.;D
+70  ----  D->hb,b.;D
           
-83  ----  D->h.b;D  
+71  ----  C->hb,k.[]b
+          
+72  ----  D->h.b;D  
           D->h.b,b;D
           
-84  ----  D->i.b;D  
-          D->i.b,b;D
+73  ----  D->k.b;D  
+          D->k.b,b;D
           
-85  ----  D->hb;D.  
+74  ----  D->hb;D.  
           
-86  ----  D->x.     
+75  ----  D->x.     
           
-87  ----  D->ib,b.;D
+76  ----  D->ib,b.;D
           
-88  ----  D->ib;D.  
+77  ----  D->ib;D.  
           
-89  ----  N->P?J:.J 
+78  ----  D->kb,b.;D
+          
+79  ----  D->kb;D.  
+          
+80  ----  N->P?J:.J 
           J->.N
           J->.P
           J->.R
@@ -563,12 +485,12 @@
           R->.b
           R->.c
           R->.d
-          R->.s
+          R->.k
           Q->.R+R
           Q->.R-R
           Q->.R*R
           
-90  ----  N->(P)?.J:J
+81  ----  N->(P)?.J:J
           J->.N
           J->.P
           J->.R
@@ -582,61 +504,75 @@
           R->.b
           R->.c
           R->.d
-          R->.s
+          R->.k
           Q->.R+R
           Q->.R-R
           Q->.R*R
           
-91  ----  C->,hbC.  
+82  ----  K->b=J;L. 
           
-92  ----  C->,ibC.  
+83  ----  C->hb.,k[]b
           
-93  ----  C->,sbC.  
+84  ----  B->ha(C).{DL}
           
-94  ----  K->b=J;L. 
-          
-95  ----  B->ha(C).{DL}
-          
-96  ----  D->hb,b;.D
+85  ----  D->hb,b;.D
           D->.hb;D
           D->.hb,b;D
           D->.ib;D
           D->.ib,b;D
+          D->.kb;D
+          D->.kb,b;D
           D->.x
           
-97  ----  D->hb.;D  
+86  ----  C->hb,k[.]b
+          
+87  ----  D->hb.;D  
           D->hb.,b;D
           
-98  ----  D->ib.;D  
-          D->ib.,b;D
-          
-99  ----  D->ib,b;.D
+88  ----  D->ib,b;.D
           D->.hb;D
           D->.hb,b;D
           D->.ib;D
           D->.ib,b;D
+          D->.kb;D
+          D->.kb,b;D
           D->.x
           
-100  ----  N->P?J:J. 
-          
-101  ----  N->(P)?J.:J
-          
-102  ----  B->ha(C){.DL}
+89  ----  D->kb,b;.D
           D->.hb;D
           D->.hb,b;D
           D->.ib;D
           D->.ib,b;D
+          D->.kb;D
+          D->.kb,b;D
           D->.x
           
-103  ----  D->hb,b;D.
+90  ----  N->P?J:J. 
           
-104  ----  D->hb,.b;D
+91  ----  N->(P)?J.:J
           
-105  ----  D->ib,.b;D
+92  ----  C->hb,.k[]b
           
-106  ----  D->ib,b;D.
+93  ----  B->ha(C){.DL}
+          D->.hb;D
+          D->.hb,b;D
+          D->.ib;D
+          D->.ib,b;D
+          D->.kb;D
+          D->.kb,b;D
+          D->.x
           
-107  ----  N->(P)?J:.J
+94  ----  D->hb,b;D.
+          
+95  ----  C->hb,k[].b
+          
+96  ----  D->hb,.b;D
+          
+97  ----  D->ib,b;D.
+          
+98  ----  D->kb,b;D.
+          
+99  ----  N->(P)?J:.J
           J->.N
           J->.P
           J->.R
@@ -650,12 +586,12 @@
           R->.b
           R->.c
           R->.d
-          R->.s
+          R->.k
           Q->.R+R
           Q->.R-R
           Q->.R*R
           
-108  ----  B->ha(C){D.L}
+100  ----  B->ha(C){D.L}
           L->.J
           L->.M
           L->.K
@@ -679,14 +615,16 @@
           R->.b
           R->.c
           R->.d
-          R->.s
+          R->.k
           Q->.R+R
           Q->.R-R
           Q->.R*R
           
-109  ----  N->(P)?J:J.
+101  ----  C->hb,k[]b.
           
-110  ----  B->ha(C){DL.}
+102  ----  N->(P)?J:J.
           
-111  ----  B->ha(C){DL}.
+103  ----  B->ha(C){DL.}
+          
+104  ----  B->ha(C){DL}.
           

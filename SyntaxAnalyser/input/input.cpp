@@ -1,9 +1,10 @@
-int main() {
+int main(int q, string[] r) {
   /*single and multiline
   comments have been handled*/
   int a, b;
   int c;
   char x;
+  string k;
   get a;
   get b;
   c = ((a+b)*3);

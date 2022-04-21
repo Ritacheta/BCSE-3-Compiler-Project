@@ -9,6 +9,7 @@
 #define INTEGER_ID 8
 #define FLOAT_ID 99
 #define CHAR_ID 9
+#define STRING_ID 10
 #define INVALID_IDENTIFIER_ID 99
 
 using namespace std;
@@ -22,7 +23,7 @@ int dfa_keyword[25][26];
 const map<int, pair<string, vector<char> > > char_token_types = {{3, {"Arithmetic Operator", {'+', '-', '*', '/'}}},
                                                                  {4, {"Relational Operator", {'<', '>', '~'}}},
                                                                  {5, {"Assignment Operator", {'='}}},
-                                                                 {6, {"Special Symbol", {'(', ')', '{', '}', ',', ';', ':', '?'}}},
+                                                                 {6, {"Special Symbol", {'(', ')', '{', '}', ',', ';', ':', '?','[',']'}}},
                                                                  {7, {"Logical Operator",{'&','|'}}}};
 
 // this array stores the tokens.
@@ -261,7 +262,7 @@ void parse_input_file(ifstream& input_file) {
                     if (token_id_map.find(token) == token_id_map.end()) {
                         token_id_map[token] = token_id_map.size();
                     }
-                    tokens.push_back(make_tuple(token_id_map[token], token, LITERAL_ID, lineNo, start));
+                    tokens.push_back(make_tuple(token_id_map[token], token, STRING_ID, lineNo, start));
                 } else if (is_integer(token) != 0) {
                     if (token_id_map.find(token) == token_id_map.end()) {
                         token_id_map[token] = token_id_map.size();
@@ -320,7 +321,7 @@ void parse_input_file(ifstream& input_file) {
                 if (token_id_map.find(token) == token_id_map.end()) {
                     token_id_map[token] = token_id_map.size();
                 }
-                tokens.push_back(make_tuple(token_id_map[token], token, LITERAL_ID, lineNo, start));
+                tokens.push_back(make_tuple(token_id_map[token], token, STRING_ID, lineNo, start));
             } else if (is_integer(token) != 0) {
                 if (token_id_map.find(token) == token_id_map.end()) {
                     token_id_map[token] = token_id_map.size();
@@ -358,6 +359,8 @@ string getTypeString(int typeId) {
             return "int";
         case 9:
             return "char";
+        case 10:
+            return "string";
         case 99:
             return "invalid-id";
         default:
@@ -411,6 +414,7 @@ string printint(vector<tuple<int, string, int, int, int> > store) {
     mp.insert(pair<string, char>("put", 'g'));
     mp.insert(pair<string, char>("char", 'i'));
     mp.insert(pair<string, char>("return", 'j'));
+    mp.insert(pair<string, char>("string", 'k'));
 
     string output = "";
     // ofstream outp;
@@ -433,6 +437,8 @@ string printint(vector<tuple<int, string, int, int, int> > store) {
         else if (type == 9)  //(character,i)
             // outp<<"d";
             output = output + "d";
+        else if (type==10)
+            output = output + "k";
         else if (type == 99) {
             cout << "Invalid token found: " << get<1>(store[i]) << endl;
             ;

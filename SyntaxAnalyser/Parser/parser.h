@@ -2,11 +2,11 @@
 using namespace std;
 
 // Defining the list of terminals and non-terminals used in the grammer
-vector<char> terminals{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'z', 'x', 's', '=', '(',
-                            ')', '{', '}', '~', '?', '$', ':', ';', '>', '<', '+', '-', '*', '~', ','};
-vector<char> nonterminals{'A', 'B', 'C', 'D', 'G', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S'};
-vector<char> symbList{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 's', 'A', 'B', 'C', 'D', 'G', 'I', 'J', 'K', 'L', 'M', 'N', 'O',
-                      'P', 'Q', 'R', 'S', 'z', 'x', '=', '(', ')', '{', '}', '?', ',', ':', ';', '>', '<', '+', '-', '*', '~', '&', '|'};
+vector<char> terminals{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'z', 'x', 'k', '=', '(',
+                            ')', '{', '}', '~', '?', '$', ':', ';', '>', '<', '+', '-', '*', '~', ',','[',']'};
+vector<char> nonterminals{'A', 'B', 'C', 'D', 'F', 'G', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S'};
+vector<char> symbList{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'A', 'B', 'C', 'D', 'F', 'G', 'I', 'J', 'K', 'L', 'M', 'N', 'O',
+                      'P', 'Q', 'R', 'S', 'z', 'x', '=', '(', ')', '{', '}', '?', ',', ':', ';', '>', '<', '+', '-', '*', '~', '&', '|','[',']'};
 // Read the productions list from the file
 vector<string> prod_ar() {
     ifstream fp("./input/LetterCFG.txt");
@@ -534,13 +534,6 @@ bool parse(string str) {
         }
         t++;
     }
-
-    // ofstream outfile("./output/First_Follow.txt");
-    // outfile<<"Non-Terminal\tFirst Set\tFollow Set\n";
-    // for(auto it:firstmap){
-    //     outfile<<it.first<<"\t"<<it.second<<endl;
-    // }
-    // outfile.close();
 
     add_dots(&I);
 
